@@ -12,6 +12,7 @@ IMPLEMENTAÇAO:
 # this import cast all numbers to float
 from __future__ import division
 import numpy as np
+import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
@@ -37,9 +38,10 @@ def acceptance_prob(v1, v2, t):
 
 
 # dataset
-diabetes = np.genfromtxt('diabetes.csv', delimiter=',')
-data = diabetes[:, :-1]
-labels = diabetes[:, -1]
+
+sonar = pd.read_csv('sonar.all-data.csv', header=None)
+labels = sonar.iloc[:,-1]
+data = sonar.iloc[:,:-1]
 
 # separa treino <-> teste
 X_train, X_test, Y_train, Y_test = train_test_split(data, labels, test_size=0.3)
